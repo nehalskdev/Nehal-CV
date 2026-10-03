@@ -29,6 +29,10 @@ export const metadata: Metadata = {
   title: { default: title, template: `%s | ${profile.name}` },
   description,
   applicationName: `${profile.name} Portfolio`,
+  icons: {
+    icon: { url: profile.avatar, type: "image/jpeg" },
+    apple: { url: profile.avatar, type: "image/jpeg" },
+  },
   keywords: [
     profile.name,
     "Nehal Shaikh portfolio",
