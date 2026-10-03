@@ -1,3 +1,5 @@
+import { Boxes, Server, Webhook, type LucideIcon } from "lucide-react";
+
 export const siteUrl = (
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://nehal-portfolio-yiha.vercel.app"
 ).replace(/\/$/, "");
@@ -40,8 +42,8 @@ export const socials = {
 
 /** Icons are served from the Devicon CDN (pinned) instead of being bundled in the repo. */
 const DEVICON = "https://cdn.jsdelivr.net/gh/devicons/devicon@v2.17.0/icons";
-export const skillIcon = (slug: string) =>
-  `${DEVICON}/${slug}/${slug}-original.svg`;
+export const skillIcon = (slug: string, variant: "original" | "plain" = "original") =>
+  `${DEVICON}/${slug}/${slug}-${variant}.svg`;
 
 /** `icon` is a Devicon slug; `invertDark` flips near-black logos so they stay visible in dark mode. */
 export type Skill = { name: string; icon: string; invertDark?: boolean };
@@ -86,6 +88,16 @@ export const skillGroups: SkillGroup[] = [
   },
 ];
 
+/**
+ * A tech-stack chip. `icon` is a logo URL, or a lucide icon for tools with no public logo.
+ * `invertDark` flips near-black logos so they stay visible in dark mode.
+ */
+export type StackItem = {
+  name: string;
+  icon: string | LucideIcon;
+  invertDark?: boolean;
+};
+
 export type Experience = {
   role: string;
   company: string;
@@ -93,7 +105,7 @@ export type Experience = {
   location?: string;
   current?: boolean;
   bullets: string[];
-  stack: string[];
+  stack: StackItem[];
 };
 
 export const experience: Experience[] = [
@@ -103,11 +115,17 @@ export const experience: Experience[] = [
     period: "Feb 2026 — Present",
     current: true,
     bullets: [
-      "Building and maintaining frontend features with Next.js and React.",
+      "Building and maintaining frontend features with Next.js and React for European E-commerce.",
       "Collaborating with design and backend teams to ship production UI code.",
       "Applying modern React/Next.js patterns in a live commercial codebase.",
     ],
-    stack: ["Next.js", "React", "TypeScript"],
+    stack: [
+      { name: "Next.js", icon: skillIcon("nextjs"), invertDark: true },
+      { name: "TypeScript", icon: skillIcon("typescript") },
+      { name: "Contentful", icon: "https://cdn.simpleicons.org/contentful" },
+      { name: "Nitro API", icon: Server },
+      { name: "Monorepo", icon: Boxes },
+    ],
   },
 ];
 
@@ -123,7 +141,7 @@ export type Project = {
   title: string;
   description: string;
   url: string;
-  tags: string[];
+  tags: StackItem[];
   metric?: string;
   featured?: boolean;
   /** Optional custom thumbnail; defaults to a live screenshot of `url`. */
@@ -143,13 +161,25 @@ export const projectThumbnail = (p: Project) =>
     waitForTimeout: "4000", // give data-fetching apps time to render past their loaders
   })}`;
 
+/** Reusable tech chips for project tags, so each logo is defined once. */
+const tech = {
+  react: { name: "React", icon: skillIcon("react") },
+  javascript: { name: "JavaScript", icon: skillIcon("javascript") },
+  html: { name: "HTML", icon: skillIcon("html5") },
+  css: { name: "CSS", icon: skillIcon("css3") },
+  axios: { name: "Axios", icon: skillIcon("axios", "plain") },
+  bootstrap: { name: "Bootstrap", icon: skillIcon("bootstrap") },
+  framerMotion: { name: "Framer Motion", icon: skillIcon("framermotion"), invertDark: true },
+  restApi: { name: "REST API", icon: Webhook },
+} satisfies Record<string, StackItem>;
+
 export const projects: Project[] = [
   {
     title: "Pokémon Battle Arena",
     description:
       "A turn-based battle simulator that pulls live Pokémon data from PokeAPI, with HP tracking, dynamic attacks and animated battle sequences.",
     url: "https://pokemon-battle-lemon.vercel.app/",
-    tags: ["React", "Axios", "Bootstrap", "Framer Motion"],
+    tags: [tech.react, tech.axios, tech.bootstrap, tech.framerMotion],
     featured: true,
   },
   {
@@ -157,7 +187,7 @@ export const projects: Project[] = [
     description:
       "A real-time currency calculator powered by the ExchangeRate API, optimised with lazy loading.",
     url: "https://currency-converter-plum-gamma.vercel.app/",
-    tags: ["React", "JavaScript", "REST API"],
+    tags: [tech.react, tech.javascript, tech.restApi],
     metric: "−50% manual errors",
     featured: true,
   },
@@ -166,28 +196,28 @@ export const projects: Project[] = [
     description:
       "A Pokémon card collection app that lets users browse and manage their favourite cards.",
     url: "https://pokemon-cards-lac.vercel.app/",
-    tags: ["React", "JavaScript", "CSS"],
+    tags: [tech.react, tech.javascript, tech.css],
   },
   {
     title: "E-Commerce Product Page",
     description:
       "A responsive product landing page with dynamic cart functionality and product customisation.",
     url: "https://shopify-assingment.vercel.app/",
-    tags: ["JavaScript", "HTML", "CSS"],
+    tags: [tech.javascript, tech.html, tech.css],
   },
   {
     title: "Cinema Vault",
     description:
       "A responsive CRUD app for adding, updating and deleting movie entries efficiently.",
     url: "https://nehalskdev.github.io/cinema-vault/",
-    tags: ["JavaScript", "HTML", "CSS"],
+    tags: [tech.javascript, tech.html, tech.css],
   },
   {
     title: "Rock Paper Scissors",
     description:
       "An interactive game with randomised opponent logic and playful CSS animations.",
     url: "https://rock-paper-scissors-psi-tan.vercel.app/",
-    tags: ["JavaScript", "HTML", "CSS"],
+    tags: [tech.javascript, tech.html, tech.css],
     metric: "+60% engagement",
   },
   {
@@ -195,7 +225,7 @@ export const projects: Project[] = [
     description:
       "A lightweight daily task manager with smooth CSS animations to add and clear chores.",
     url: "https://todo-app-inky-nine-53.vercel.app/",
-    tags: ["JavaScript", "HTML", "CSS"],
+    tags: [tech.javascript, tech.html, tech.css],
   },
 ];
 

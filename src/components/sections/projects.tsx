@@ -8,7 +8,7 @@ import { projectThumbnail, projects, socials, type Project } from "@/lib/data";
 import { cn } from "@/lib/utils";
 import { SectionHeading } from "@/components/section-heading";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion";
-import { Badge } from "@/components/ui/badge";
+import { TechBadge } from "@/components/tech-badge";
 import { Button } from "@/components/ui/button";
 import { GitHubIcon } from "@/components/icons";
 
@@ -105,9 +105,7 @@ function ProjectCard({ project, wide }: { project: Project; wide: boolean }) {
         )}
         <div className="mt-4 flex flex-wrap gap-1.5">
           {project.tags.map((t) => (
-            <Badge key={t} variant="outline" className="rounded-full font-normal">
-              {t}
-            </Badge>
+            <TechBadge key={t.name} item={t} variant="outline" className="font-normal" />
           ))}
         </div>
       </div>

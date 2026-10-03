@@ -7,6 +7,7 @@ import { experience } from "@/lib/data";
 import { SectionHeading } from "@/components/section-heading";
 import { Reveal } from "@/components/motion";
 import { Badge } from "@/components/ui/badge";
+import { TechBadge } from "@/components/tech-badge";
 
 export function Experience() {
   const ref = useRef<HTMLDivElement>(null);
@@ -78,9 +79,7 @@ export function Experience() {
 
                   <div className="mt-6 flex flex-wrap gap-2">
                     {job.stack.map((t) => (
-                      <Badge key={t} variant="secondary" className="rounded-full px-3">
-                        {t}
-                      </Badge>
+                      <TechBadge key={t.name} item={t} />
                     ))}
                   </div>
                 </article>
