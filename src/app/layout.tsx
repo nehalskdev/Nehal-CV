@@ -100,7 +100,7 @@ const jsonLd = {
       "@id": personId,
       name: profile.name,
       url: siteUrl,
-      image: `${siteUrl}${profile.avatar}`,
+      image: profile.avatar,
       email: `mailto:${profile.email}`,
       jobTitle: profile.role,
       description,

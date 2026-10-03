@@ -1,5 +1,3 @@
-import { readFile } from "node:fs/promises";
-import { join } from "node:path";
 import { ImageResponse } from "next/og";
 import { profile } from "@/lib/data";
 
@@ -7,10 +5,7 @@ export const alt = `${profile.name} — ${profile.role}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-export default async function OpengraphImage() {
-  const avatar = await readFile(join(process.cwd(), "public", "nehal-shaikh.jpg"));
-  const avatarSrc = `data:image/jpeg;base64,${avatar.toString("base64")}`;
-
+export default function OpengraphImage() {
   return new ImageResponse(
     (
       <div
@@ -36,7 +31,7 @@ export default async function OpengraphImage() {
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={avatarSrc}
+            src={profile.avatar}
             alt=""
             width={300}
             height={300}

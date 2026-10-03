@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { siteUrl } from "@/lib/data";
+import { profile, siteUrl } from "@/lib/data";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
@@ -8,7 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 1,
-      images: [`${siteUrl}/nehal-shaikh.jpg`],
+      images: [profile.avatar],
     },
   ];
 }

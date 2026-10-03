@@ -11,7 +11,9 @@ npm run build && npm start
 
 ## Editing content
 All content (profile, skills, experience, projects, videos) lives in `src/lib/data.ts`.
-Photo: `public/nehal-shaikh.jpg` · Resume: `public/nehal-shaikh-resume.pdf`.
+The profile photo and resume PDF are hosted on Vercel Blob (not in the repo); their URLs
+are `profile.avatar` and `profile.resume` in `src/lib/data.ts`. To update one, upload the new
+file in Vercel → Storage → Blob and update the URL there.
 
 ## Environment (see `.env.example`)
 - `NEXT_PUBLIC_SITE_URL` — production URL, used for canonical/OG/sitemap.

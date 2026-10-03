@@ -6,6 +6,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       { protocol: "https", hostname: "i.ytimg.com" },
       { protocol: "https", hostname: "api.microlink.io" },
+      { protocol: "https", hostname: "ii7enamdiapzsgzg.public.blob.vercel-storage.com" },
     ],
     // Cache optimised images (incl. project screenshots) for 30 days to spare the screenshot API.
     minimumCacheTTL: 60 * 60 * 24 * 30,

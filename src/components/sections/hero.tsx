@@ -184,7 +184,8 @@ export function Hero() {
                   </a>
                 </Button>
                 <Button asChild size="lg" variant="outline" className="rounded-full">
-                  <a href={profile.resume} download="Nehal-Shaikh-Resume.pdf">
+                  {/* `?download=1` makes Blob serve it as an attachment; the `download` attribute is ignored cross-origin. */}
+                  <a href={`${profile.resume}?download=1`}>
                     <Download /> Resume
                   </a>
                 </Button>

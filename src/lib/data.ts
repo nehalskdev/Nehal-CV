@@ -2,6 +2,9 @@ export const siteUrl = (
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://nehal-portfolio-yiha.vercel.app"
 ).replace(/\/$/, "");
 
+/** Public Vercel Blob store holding the profile photo and resume (kept out of the repo). */
+const BLOB = "https://ii7enamdiapzsgzg.public.blob.vercel-storage.com";
+
 export const profile = {
   name: "Nehal Shaikh",
   firstName: "Nehal",
@@ -12,8 +15,8 @@ export const profile = {
   email: "nehal4dev@gmail.com",
   phone: "+91 91378 82648",
   phoneHref: "tel:+919137882648",
-  avatar: "/nehal-shaikh.jpg",
-  resume: "/nehal-shaikh-resume.pdf",
+  avatar: `${BLOB}/nehal-shaikh.jpg`,
+  resume: `${BLOB}/nehal-shaikh-resume.pdf`,
   tagline:
     "I craft fast, accessible and delightful interfaces with React, Next.js and TypeScript.",
   summary: [
