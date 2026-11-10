@@ -109,6 +109,14 @@ export function Hero() {
                 className="object-cover object-top"
               />
             </div>
+            <Image
+              src="/santa-hat.webp"
+              alt=""
+              width={240}
+              height={294}
+              sizes="(min-width: 640px) 54px, 38px"
+              className="pointer-events-none absolute top-[-5%] left-[1.5%] h-auto w-[34%] rotate-[-10deg]"
+            />
             <span className="absolute right-1 bottom-2 flex size-5 items-center justify-center rounded-full border-4 border-card bg-emerald-500 sm:right-3 sm:bottom-3 sm:size-6">
               <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400 opacity-60" />
             </span>

@@ -1,4 +1,6 @@
 import { Background } from "@/components/background";
+import { Snow } from "@/components/snow";
+import { Reindeer } from "@/components/reindeer";
 import { ScrollProgress } from "@/components/scroll-progress";
 import { Dock } from "@/components/dock";
 import { Footer } from "@/components/footer";
@@ -15,7 +17,12 @@ export default function Home() {
     <>
       <ScrollProgress />
       <Background />
-      <main id="main" className="mx-auto w-full max-w-6xl space-y-24 px-4 sm:space-y-32 sm:px-6 lg:px-8">
+      <Snow />
+      <Reindeer />
+      <main
+        id="main"
+        className="mx-auto w-full max-w-6xl space-y-24 px-4 sm:space-y-32 sm:px-6 lg:px-8"
+      >
         <Hero />
         <About />
         <Skills />
